@@ -18,9 +18,7 @@
     <a href="/dashboard">Dashboard</a>
     {{#if loggedIn}}
     <a id="logout" href="javascript:void(0);">Logout</a>
-    {{!-- <button id="logout" class="btn-no-style">Logout</button> --}}
     {{else}}
-    <!-- Otherwise, show a link to login -->
     <a href="/login">Login</a>
     {{/if}}
   </nav>
@@ -29,7 +27,6 @@
       {{{body}}}
   </main>
   
-  <!-- If the user is logged in, load the JS script for when they logout -->
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>
   {{/if}}
