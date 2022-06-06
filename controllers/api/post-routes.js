@@ -3,8 +3,7 @@ const sequelize = require('../../config/connection');
 const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-// Get a single post by ID for single-post page
+//get a post route
 router.get('/:id', async (req, res) => {
   try {
     const postData = await Post.findOne({ 
@@ -46,7 +45,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Get a single post by ID for the edit-post page
+//get a post route
 router.get('/edit/:id', async (req, res) => {
   try {
     const postData = await Post.findOne({ 
@@ -88,8 +87,7 @@ router.get('/edit/:id', async (req, res) => {
   }
 });
 
-
-// CREATE new post
+//create a post route
 router.post('/', withAuth, async (req, res) => {
   try {
     const dbPost = await Post.create({
@@ -106,7 +104,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-// Update post
+//update a post route
 router.put('/:id', withAuth, (req, res) => {
   Post.update(
     {
@@ -132,7 +130,7 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-// Delete post
+// delete a post route
 router.delete('/:id', withAuth, (req, res) => {
   Post.destroy({
     where: {

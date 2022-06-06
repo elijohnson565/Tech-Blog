@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-// Get all posts - homepage
+// Get route for all homepage posts
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({ 
@@ -16,10 +16,6 @@ router.get('/', async (req, res) => {
         {
           model: Comment,
           attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-          // include: {
-          //   model: User,
-          //   attributes: ['username']
-          // }
         },
         {
           model: User,
@@ -40,7 +36,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get all posts - dashboard
+// Get route for all dashboard posts
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -57,10 +53,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
         {
           model: Comment,
           attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-          // include: {
-          //   model: User,
-          //   attributes: ['username']
-          // }
         },
         {
           model: User,
@@ -78,14 +70,14 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-// Login route
+// login route
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect to the homepage
+// redirect to the homepage if the user is already logged in
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
-  // Otherwise, render the 'login' template
+  // If the user is not logged in then render the login page instead
   res.render('login');
 });
 
