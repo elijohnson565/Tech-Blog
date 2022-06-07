@@ -3,8 +3,6 @@ const sequelize = require('../../config/connection');
 const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-// Get a single post by ID for single-post page
 router.get('/:id', async (req, res) => {
   try {
     const postData = await Post.findOne({ 
@@ -46,7 +44,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Get a single post by ID for the edit-post page
 router.get('/edit/:id', async (req, res) => {
   try {
     const postData = await Post.findOne({ 
@@ -89,7 +86,6 @@ router.get('/edit/:id', async (req, res) => {
 });
 
 
-// CREATE new post
 router.post('/', withAuth, async (req, res) => {
   try {
     const dbPost = await Post.create({
